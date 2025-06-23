@@ -132,7 +132,8 @@ def plot_two_uncertainties(
             mode="lines",
             line=dict(color="#ff7f0e", dash="solid"),
             name="conformal lower bound",
-            showlegend=False
+            legendgroup="conformal_interval",
+            showlegend=True
         )
     )
     fig.add_trace(
@@ -143,19 +144,21 @@ def plot_two_uncertainties(
             fill="tonexty",
             line=dict(color="#ff7f0e", dash="solid"),
             name="conformal upper bound",
+            legendgroup="conformal_interval",
             showlegend=False
         )
     )
 
-    # naive lower/upper bounds
+    # naive lower/upper bounds (single legend entry)
     fig.add_trace(
         go.Scatter(
             x=X.ravel(),
             y=y_pis_naive[:, 0, 0],
             mode="lines",
-            line=dict(color="#FFD700", dash="dash"),  # dashed yellow line
-            name="naive lower bound",
-            showlegend=False
+            line=dict(color="#FFD700", dash="dash"),
+            name="Naive Interval",               # name shown in legend
+            legendgroup="naive_interval",        # group ID
+            showlegend=True                      # show this one in legend
         )
     )
     fig.add_trace(
@@ -164,9 +167,10 @@ def plot_two_uncertainties(
             y=y_pis_naive[:, 1, 0],
             mode="lines",
             fill="tonexty",
-            line=dict(color="#FFD700", dash="dash"),  # dashed yellow line
-            name="naive upper bound",
-            showlegend=False
+            line=dict(color="#FFD700", dash="dash"),
+            name="Naive Interval",               # same name (optional)
+            legendgroup="naive_interval",        # same group ID
+            showlegend=False                     # only show one in legend
         )
     )
 
