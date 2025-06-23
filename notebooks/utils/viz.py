@@ -131,7 +131,7 @@ def plot_two_uncertainties(
             y=y_pis_conformal[:, 0, 0],
             mode="lines",
             line=dict(color="#ff7f0e", dash="solid"),
-            name="conformal lower bound",
+            name="Conformal interval",
             legendgroup="conformal_interval",
             showlegend=True
         )
