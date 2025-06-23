@@ -112,6 +112,92 @@ def plot_uncertainties(
     return fig
 
 
+def plot_two_uncertainties(
+    X: np.ndarray,
+    y: np.ndarray,
+    y_preds: np.ndarray,
+    y_pis_conformal: np.ndarray,
+    y_pis_naive: np.ndarray,
+    title: Optional[str] = None,
+    xaxis_title: str = "x",
+    yaxis_title: str = "y"
+) -> go.Figure:
+    fig = go.Figure()
+
+    # conformal lower/upper bounds
+    fig.add_trace(
+        go.Scatter(
+            x=X.ravel(),
+            y=y_pis_conformal[:, 0, 0],
+            mode="lines",
+            line=dict(color="#ff7f0e", dash="solid"),
+            name="conformal lower bound",
+            showlegend=False
+        )
+    )
+    fig.add_trace(
+        go.Scatter(
+            x=X.ravel(),
+            y=y_pis_conformal[:, 1, 0],
+            mode="lines",
+            fill="tonexty",
+            line=dict(color="#ff7f0e", dash="solid"),
+            name="conformal upper bound",
+            showlegend=False
+        )
+    )
+
+    # naive lower/upper bounds
+    fig.add_trace(
+        go.Scatter(
+            x=X.ravel(),
+            y=y_pis_naive[:, 0, 0],
+            mode="lines",
+            line=dict(color="#FFD700", dash="dash"),  # dashed yellow line
+            name="naive lower bound",
+            showlegend=False
+        )
+    )
+    fig.add_trace(
+        go.Scatter(
+            x=X.ravel(),
+            y=y_pis_naive[:, 1, 0],
+            mode="lines",
+            fill="tonexty",
+            line=dict(color="#FFD700", dash="dash"),  # dashed yellow line
+            name="naive upper bound",
+            showlegend=False
+        )
+    )
+
+    # predictions
+    fig.add_trace(go.Scatter(
+        name="predictions",
+        x=X.ravel(),
+        y=y_preds,
+        mode="lines",
+        line=dict(color="#008000", dash="solid")
+    ))
+
+    # data
+    fig.add_trace(go.Scatter(
+        name="data",
+        x=X.ravel(),
+        y=y,
+        mode="markers",
+        marker=dict(color="#1f77b4", size=2)
+    ))
+
+    fig.update_layout(
+        title=title,
+        xaxis_title=xaxis_title,
+        yaxis_title=yaxis_title,
+        font=font_dict,
+        hovermode="x",
+    )
+    return fig
+
+
 def plot_prediction_interval_width(
     X_test: np.ndarray,
     y_pis: np.ndarray,
