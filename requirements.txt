@@ -1,0 +1,5 @@
+folium
+mapie==v1.0.1
+notebook
+pandas
+plotly

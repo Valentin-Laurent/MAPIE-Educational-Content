@@ -1,0 +1,19 @@
+[project]
+name = "mapie-datacraft"
+version = "0.1.0"
+description = ""
+authors = [
+    {name="Valentin Laurent", email="valentin.laurent@capgemini.com"},
+    {name="Grégoire Martinon", email="gregoire.martinon@capgemini.com"},
+    {name="Faustin Pulvéric", email="faustin.pulveric@capgemini.com"},
+]
+readme = "README.md"
+
+requires-python = ">=3.10"
+dependencies = [
+    "folium>=0.19.6",
+    "mapie>=1.0.1",
+    "notebook>=7.4.3",
+    "pandas>=2.2.3",
+    "plotly>=6.1.2",
+]
